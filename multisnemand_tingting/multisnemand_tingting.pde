@@ -21,11 +21,13 @@ int reset_i = 0;
 
 PImage ulf;
 
+
 void setup() {
   size(690, 690);
   setPosSpeed();
   ulf = loadImage("ulf.png");
 }
+
 
 void draw() {
   //setup
@@ -34,30 +36,25 @@ void draw() {
   if(!resetting)
     time++;
 
-  for(int i = 0; i < antal; i++){
-    figure(speedz [i], speedx[i],speedy[i],posx[i],posy[i],posz[i], startbounce[i]); //posx, posy, size, dirx, diry
-    
-  }
-
-  delay(2);
+  for(int i = 0; i < antal; i++)
+    figure(speedz [i], speedx[i],speedy[i],posx[i],posy[i],posz[i], startbounce[i]);
 
   if(time>1000)
     resetting = true;
 
   if (resetting){
     time -= 20;
-    reset_i++;
-    
+    reset_i++;    
     if(reset_i > 50){
       setPosSpeed();
       resetting = false;
       reset_i = 0; 
     }
   }
-    
 }
 
-void figure(float speedz, float speedx, float speedy, float posx, float posy, float posz, float startbounce) {
+
+void figure(float speedz, float speedx, float speedy, float posx, float posy, float posz, float startbounce){
   float size = speedz * time + posz;
   if (size < 0)
     size = 0;
@@ -79,15 +76,16 @@ void figure(float speedz, float speedx, float speedy, float posx, float posy, fl
   popMatrix();
 }
 
+
 void setPosSpeed(){
   for(int i = 0; i < antal; i++){
-      posx[i] = random(0,690);
-      posy[i] = random(0,690);
-      posz[i] = random(0,2);
-      speedx[i] = random(-2,2);
-      speedy[i] = random(-2,2);
-      speedz[i] = random(-0.01,0.01);
-      
-      startbounce[i] = random(0,frekvensmod*5);     
+    posx[i] = random(0,690);
+    posy[i] = random(0,690);
+    posz[i] = random(0,2);
+    speedx[i] = random(-2,2);
+    speedy[i] = random(-2,2);
+    speedz[i] = random(-0.01,0.01);
+    
+    startbounce[i] = random(0,frekvensmod*5);     
   }
 }
